@@ -1,6 +1,10 @@
+'use client'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import {ReduxProvider} from "@/redux/provider";
+import Header from "@/app/common/Header";
+import React from "react";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,8 +19,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+      <ReduxProvider>
+      <html>
+      <head>
+        <title>Next.js 공부중</title>
+      </head>
+
+      <body>
+      <nav><Header/></nav>
+      {children}
+      </body>
+      </html>
+      </ReduxProvider>
   )
 }
