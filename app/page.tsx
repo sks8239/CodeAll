@@ -1,15 +1,36 @@
-import React from 'react'
-import Link from "next/link";
+'use client'
+import React, { useEffect, useRef } from 'react';
+import Section1 from "@/app/Home/HomeSection/Section1";
+import Section3 from "@/app/Home/HomeSection/Section3";
+import Section4 from "@/app/Home/HomeSection/Section4";
+import Section2 from "@/app/Home/HomeSection/Section2";
 
-type Props = {}
 
-function Home({}: Props) {
-  return <>
-    <h1>Pagejsx입니다.</h1>
-    <Link href="/about">
-      <h1>About</h1>
-    </Link>
-  </>
-}
+const Page: React.FC = () => {
 
-export default Home
+
+  // useEffect(() => {
+  //     restoreScrollPosition();
+  //
+  //     const handleBeforeUnload = () => {
+  //         saveScrollPosition();
+  //     };
+  //
+  //     window.addEventListener('beforeunload', handleBeforeUnload);
+  //
+  //     return () => {
+  //         window.removeEventListener('beforeunload', handleBeforeUnload);
+  //     };
+  // }, []);
+
+  return (
+      <div>
+        <Section1/>
+        <Section2/>
+        <Section3/>
+        <Section4/>
+      </div>
+  );
+};
+
+export default Page;
