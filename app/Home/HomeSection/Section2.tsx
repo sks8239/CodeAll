@@ -1,4 +1,4 @@
-
+'use client'
 import LazyLoadedSection from "../../utils/LazyLoadedSection";
 import {Section1Wrapper, Section2Wrapper} from "../HomeStyleComponent/SectionWrapper";
 import React from "react";

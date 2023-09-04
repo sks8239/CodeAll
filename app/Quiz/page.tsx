@@ -1,7 +1,9 @@
 'use client'
 import React from "react";
-import QuizComponent from "@/app/Quiz/QuizComponent";
-
+import dynamic from "next/dynamic";
+const QuizComponent = dynamic(()=> import('@/app/Quiz/QuizComponent'),{
+    ssr: false
+});
 const QuizPages : React.FC = () => {
 
 

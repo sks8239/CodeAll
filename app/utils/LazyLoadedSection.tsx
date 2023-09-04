@@ -7,7 +7,7 @@ interface LazyLoadedSectionProps {
 
 }
 
-const LazyLoadedSection: React.FC<LazyLoadedSectionProps> = ({ children,  backgroundcolor }) => {
+const LazyLoadedSection: React.FC<LazyLoadedSectionProps> = ({ children }) => {
 
   const [loaded, setLoaded] = React.useState<string>("false");
 

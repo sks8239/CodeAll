@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components";
 
 interface HeaderWrapperProps {
-    isscrolled: string;
+    $isscrolled: string;
 }
 
 const HeaderWrapper = styled.header<HeaderWrapperProps>`
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: ${(props) => (props.isscrolled === "true" ? "#FFFFFF" : "#3389FF")};
+  background-color: ${(props) => (props.$isscrolled === "true" ? "#FFFFFF" : "#3389FF")};
   z-index: 100;
 `;
 
@@ -49,7 +49,7 @@ const Li = styled.li`
   }
 `;
 interface NavLinkProps {
-    isscrolled: string;
+    $isscrolled: string;
 }
 const NavLink = styled.div<NavLinkProps>`
   text-decoration: none;
@@ -60,7 +60,7 @@ const NavLink = styled.div<NavLinkProps>`
   cursor: pointer;
 
   ${(props) =>
-          props.isscrolled === "true" &&
+          props.$isscrolled === "true" &&
           css`
       color: #3389ff;
 

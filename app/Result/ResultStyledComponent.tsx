@@ -1,4 +1,3 @@
-// ResultStyledComponent.tsx
 import styled from "styled-components";
 
 const ResultStyledContainer = styled.div`

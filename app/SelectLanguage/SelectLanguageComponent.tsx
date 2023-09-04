@@ -9,14 +9,14 @@ import {
 } from './SelectLanguageStyle';
 import axios from "axios";
 import {resetScore, setQuestions} from "@/redux/features/quiz-slice";
-import {AppDispatch} from "@/redux/store";
+import {AppDispatch, RootState, useAppSelector} from "@/redux/store";
 import {useRouter} from "next/navigation";
 
 const SelectLanguageComponent: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
     const router = useRouter()
-
+    const accessToken = useAppSelector((state:RootState)=>state.login.accessToken)
     const handleLanguageSelect = (language: string) => {
         let updatedLanguages = [...selectedLanguages];
 
@@ -33,7 +33,7 @@ const SelectLanguageComponent: React.FC = () => {
     };
 
     const handleSubmit = async (languageId: string) => {
-        if (sessionStorage.getItem("accessToken")) {
+        if (accessToken) {
             if (selectedLanguages.length === 0) {
                 alert('적어도 한 가지 언어를 선택해야 합니다.');
             } else {
@@ -42,7 +42,7 @@ const SelectLanguageComponent: React.FC = () => {
                     dispatch(resetScore());
                     const response = await axios.get(`/quiz?language=${languageId}`, {
                         headers: {
-                            Authorization: `Bearer ${sessionStorage.getItem("accessToken")}` // 인증 토큰을 포함하여 요청
+                            Authorization: `Bearer ${accessToken}` // 인증 토큰을 포함하여 요청
                         }
                     });
                     console.log(response);
@@ -60,7 +60,7 @@ const SelectLanguageComponent: React.FC = () => {
 
                     dispatch(setQuestions(questions));
 
-                    router.push('/quiz');
+                    router.push('/Quiz');
                 } catch (error) {
                     console.error('서버 요청 실패:', error);
                 }

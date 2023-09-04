@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../Redux/RootReducer";
 import { InterviewWrapper } from "../Interview/InterviewStyledComponent";
-import { ChatText, ChatDots } from "react-bootstrap-icons";
+import {ChatText, ChatDots, PinAngleFill, Heart} from "react-bootstrap-icons";
+import {RootState} from "@/redux/store";
 
 const StudyComponents: React.FC = () => {
     const selectedLanguage = useSelector(
@@ -17,7 +17,7 @@ const StudyComponents: React.FC = () => {
     const studyIds = languageData[selectedLanguage]?.studyIds || [];
 
     const [showContent, setShowContent] = useState<boolean[]>([]);
-
+    console.log(languageData)
     const handleToggleContent = (index: number) => {
         setShowContent((prevShowContent) => {
             const updatedShowContent = [...prevShowContent];
@@ -26,19 +26,40 @@ const StudyComponents: React.FC = () => {
         });
     };
 
+    const handleLikeClick=(studyId: any) =>{
+        console.log(studyId + " 번 좋아요 눌림")
+    }
+
     return (
         <InterviewWrapper>
             {content.map((item, index) => (
-                <div key={studyIds[index]}>
-                    <div className="interview-question">
-                        <p className="question-Title">{index+1}. {item}</p>
+                <div className="interview-question">
+                    <PinAngleFill
+                        style={{
+                            color: "#965A00",
+                            position: "absolute",
+                            top: "-5%",
+                            left: "0%",
+                            fontSize: "70px",
+                            transform: "rotate(-75deg)",
+                            zIndex: 50,
+                        }}
+                    />
+                    <p className="question-Title">{index+1}. {item}</p>
+                    <div className="buttons-container">
                         <button
                             className="toggle-button"
                             onClick={() => handleToggleContent(index)}
                         >
                             {showContent[index] ? <ChatText /> : <ChatDots />}
                         </button>
+                        <button className="like-cnt"
+                                onClick={()=>handleLikeClick(studyIds[index])}
+                        >
+                            <Heart />
+                        </button>
                     </div>
+
                     {showContent[index] && (
                         <div className="answer-comments-container">
                             <p>Answers: {example[index]}</p>
@@ -46,7 +67,9 @@ const StudyComponents: React.FC = () => {
                         </div>
                     )}
                 </div>
+
             ))}
+
         </InterviewWrapper>
     );
 };

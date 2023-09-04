@@ -1,3 +1,4 @@
+'use client'
 import React, {SetStateAction, useState} from "react";
 import axios from "axios";
 import StudyComponents from "@/app/Study/StudyComponents";

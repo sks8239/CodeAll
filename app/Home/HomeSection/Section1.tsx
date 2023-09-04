@@ -1,4 +1,4 @@
-
+'use client'
 import {Section1Wrapper} from "../HomeStyleComponent/SectionWrapper";
 import {ButtonWrapper, DownloadButtonStyle} from "../HomeStyleComponent/ButtonWrapper";
 import {Download} from "react-bootstrap-icons";

@@ -1,17 +1,20 @@
 import {Dispatch} from "redux";
+import {SetShowContentAction} from "@/redux/features/interview-slice";
 
 export interface LoginState {
     isLoading: boolean;
     error: string | null;
     accessToken: string;
     refreshToken: string;
+    currentUserNickName : string;
 }
 
 const initialState: LoginState = {
     isLoading: false,
     error: null,
     accessToken: "",
-    refreshToken: ""
+    refreshToken: "",
+    currentUserNickName : ""
 };
 
 export interface LoginUserAction {
@@ -23,6 +26,7 @@ export interface LoginUserSuccessAction {
     payload: {
         accessToken: string;
         refreshToken: string;
+        currentUserNickName: string;
     };
 }
 export interface LogoutAction {
@@ -38,7 +42,29 @@ export type ActionTypes =
     | LoginUserSuccessAction
     | LoginUserFailureAction
     | LogoutAction;
-
+export const setShowContent = (
+    index: number,
+    show: boolean
+): SetShowContentAction => {
+    return {
+        type: "SET_SHOW_CONTENT",
+        payload: {
+            index,
+            show,
+        },
+    };
+};
+export const setLoginUserSuccess = (
+    accessToken: string, refreshToken: string, currentUserNickName: string) =>{
+    return{
+        type : "LOGIN_USER_SUCCESS",
+        payload:{
+            accessToken,
+            refreshToken,
+            currentUserNickName
+        }
+    }
+}
 
 
 export const loginReducer = (state = initialState, action: ActionTypes): LoginState => {
@@ -50,11 +76,12 @@ export const loginReducer = (state = initialState, action: ActionTypes): LoginSt
                 error: null,
             };
         case "LOGIN_USER_SUCCESS":
-            const { accessToken, refreshToken } = (action as LoginUserSuccessAction).payload;
+            const { accessToken, refreshToken, currentUserNickName } = (action as LoginUserSuccessAction).payload;
             return {
                 ...state,
                 accessToken,
                 refreshToken,
+                currentUserNickName
             };
         case "LOGIN_USER_FAILURE":
             return {
@@ -67,6 +94,7 @@ export const loginReducer = (state = initialState, action: ActionTypes): LoginSt
                 ...state,
                 accessToken: "",
                 refreshToken: "",
+                currentUserNickName : "",
             };
         default:
             return state;

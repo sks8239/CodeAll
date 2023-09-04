@@ -7,6 +7,7 @@ export interface InterviewState {
     currentPage: number;
     interviewIds: number[];
     selectedInterviewIds: number[];
+    likeCnt : number[];
 }
 
 const initialState: InterviewState = {
@@ -18,6 +19,7 @@ const initialState: InterviewState = {
     currentPage: 1,
     interviewIds: [],
     selectedInterviewIds: [],
+    likeCnt:[]
 };
 
 export interface SetLanguageContentAction {
@@ -57,6 +59,10 @@ export interface SetCurrentPageAction {
     type: "SET_CURRENT_PAGE";
     payload: number;
 }
+export interface SetLikeCntAction {
+    type: "SET_LIKE_CNT";
+    payload: number[];
+}
 
 export interface ToggleSelectedInterviewIdAction {
     type: "TOGGLE_SELECTED_INTERVIEW_ID";
@@ -71,7 +77,8 @@ export type ActionTypes =
     | SetShowContentAction
     | SetCurrentPageAction
     | SetInterviewIdsAction
-    | ToggleSelectedInterviewIdAction;
+    | ToggleSelectedInterviewIdAction
+    | SetLikeCntAction;
 
 export const setLanguageContent = (
     content: string[]
@@ -108,7 +115,14 @@ export const setInterviewIds = (
         payload: interviewIds,
     };
 };
-
+export const setLikeCnt = (
+    likeCnt: number[]
+): SetLikeCntAction => {
+    return {
+        type: "SET_LIKE_CNT",
+        payload: likeCnt,
+    };
+};
 export const setActiveLanguage = (
     language: string
 ): SetActiveLanguageAction => {
@@ -191,6 +205,11 @@ export const interviewReducer = (
             return {
                 ...state,
                 interviewIds: action.payload,
+            };
+        case "SET_LIKE_CNT":
+            return {
+                ...state,
+                likeCnt: action.payload,
             };
         case "TOGGLE_SELECTED_INTERVIEW_ID":
             const interviewId = action.payload;

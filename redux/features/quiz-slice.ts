@@ -7,6 +7,10 @@ export interface Question {
     correctAnswer: string;
     questionsId: number; // questionsId 추가
 }
+export interface Answer {
+    answer: string;
+    questionId: number;
+}
 
 // 액션 타입
 export interface SetQuestionsAction extends Action {
@@ -18,7 +22,7 @@ export interface SetQuestionsAction extends Action {
 
 export interface SetAnswersAction extends Action {
     type: 'SET_ANSWERS';
-    payload: string[];
+    payload: Answer[];
 }
 
 export interface UpdateScoreAction extends Action {
@@ -40,7 +44,7 @@ export const setQuestions = (questions: Question[]): SetQuestionsAction => ({
     },
 });
 
-export const setAnswers = (answers: string[]): SetAnswersAction => ({
+export const setAnswers = (answers:Answer[]): SetAnswersAction => ({
     type: 'SET_ANSWERS',
     payload: answers,
 });
@@ -58,7 +62,7 @@ export const resetScore = (): ResetScoreAction => ({
 export interface QuizState {
     questions: Question[];
     questionsId: number[];
-    answers: string[];
+    answers: Answer[];
     score: number;
 }
 

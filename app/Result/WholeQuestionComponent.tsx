@@ -1,4 +1,4 @@
-// WholeQuestionComponent.tsx
+'use client'
 import React, { useState } from "react";
 import {
     ProblemButton,
@@ -8,24 +8,24 @@ import {
     ResultStyledSection
 } from "./ResultStyledComponent";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import {Question} from "@/redux/features/quiz-slice";
 import {RootState} from "@/redux/store";
 
 const WholeQuestionComponent: React.FC = () => {
     const questions = useSelector((state: RootState) => state.quiz.questions);
     const answers = useSelector((state: RootState) => state.quiz.answers);
-    const score = useSelector((state: RootState) => state.quiz.score);
-    const navigate = useNavigate();
+    console.log(questions);
+    console.log(answers);
 
     const [showIncorrectQuestions, setShowIncorrectQuestions] = useState(false);
     const [showCorrectQuestions, setShowCorrectQuestions] = useState(false);
-    console.log(answers);
-    console.log(questions);
+
     const incorrectQuestions: Question[] = [];
     const correctQuestions: Question[] = [];
-    questions.forEach((question, index) => {
-        if (answers[index] !== question.correctAnswer) {
+
+    questions.forEach((question) => {
+        const selectedAnswer = answers.find((answer) => answer.questionId === question.questionsId);
+        if (selectedAnswer?.answer !== question.correctAnswer) {
             incorrectQuestions.push(question);
         } else {
             correctQuestions.push(question);
@@ -58,39 +58,49 @@ const WholeQuestionComponent: React.FC = () => {
             {showIncorrectQuestions && (
                 <ResultStyledSection>
                     <h1>틀린 문제</h1>
-                    {incorrectQuestions.sort(sortByQuestionNumber).map((question, index) => (
-                        <ResultStyledQuestionCard key={index}>
-                            <h3>
-                                {index + 1}번 문제: {question.question}
-                            </h3>
-                            <p>보기: {question.choices.join(", ")}</p>
-                            <p>정답: {question.correctAnswer}</p>
-                            <p>선택한 답: {answers[index]}</p>
-                        </ResultStyledQuestionCard>
-                    ))}
+                    {incorrectQuestions.sort(sortByQuestionNumber).map((question, index) => {
+                        // Find the selected answer for this question
+                        const selectedAnswer = answers.find((answer) => answer.questionId === question.questionsId);
+                        return (
+                            <ResultStyledQuestionCard key={index}>
+                                <h3>
+                                    {index + 1}번 문제: {question.question}
+                                </h3>
+                                <p>보기: {question.choices.join(", ")}</p>
+                                <p>정답: {question.correctAnswer}</p>
+                                {/* Access the selected answer using questionId */}
+                                <p>선택한 답: {selectedAnswer?.answer || "선택하지 않음"}</p>
+                            </ResultStyledQuestionCard>
+                        );
+                    })}
                 </ResultStyledSection>
             )}
 
             <ResultStyledButtons2>
                 <ProblemButtonContainer>
                     <ProblemButton onClick={toggleCorrectQuestions}>
-                        {showIncorrectQuestions ? "맞춘 문제 숨기기" : "맞춘 문제 보기"}
+                        {showCorrectQuestions ? "맞춘 문제 숨기기" : "맞춘 문제 보기"}
                     </ProblemButton>
                 </ProblemButtonContainer>
             </ResultStyledButtons2>
             {showCorrectQuestions && (
                 <ResultStyledSection>
                     <h1>맞춘 문제</h1>
-                    {correctQuestions.sort(sortByQuestionNumber).map((question, index) => (
-                        <ResultStyledQuestionCard key={index}>
-                            <h3>
-                                {index + 1}번 문제: {question.question}
-                            </h3>
-                            <p>보기: {question.choices.join(", ")}</p>
-                            <p>정답: {question.correctAnswer}</p>
-                            <p>선택한 답: {answers[index]}</p>
-                        </ResultStyledQuestionCard>
-                    ))}
+                    {correctQuestions.sort(sortByQuestionNumber).map((question, index) => {
+                        // Find the selected answer for this question
+                        const selectedAnswer = answers.find((answer) => answer.questionId === question.questionsId);
+                        return (
+                            <ResultStyledQuestionCard key={index}>
+                                <h3>
+                                    {index + 1}번 문제: {question.question}
+                                </h3>
+                                <p>보기: {question.choices.join(", ")}</p>
+                                <p>정답: {question.correctAnswer}</p>
+                                {/* Access the selected answer using questionId */}
+                                <p>선택한 답: {selectedAnswer?.answer || "선택하지 않음"}</p>
+                            </ResultStyledQuestionCard>
+                        );
+                    })}
                 </ResultStyledSection>
             )}
         </>

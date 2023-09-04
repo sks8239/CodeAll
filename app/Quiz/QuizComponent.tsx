@@ -1,6 +1,6 @@
+'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
     QuizWrapper,
@@ -16,15 +16,15 @@ import {
 } from './QuizStyledComponent';
 import { BugFill, Bug, PinAngleFill } from 'react-bootstrap-icons';
 import QuizAnimationComponent from './QuizAnimationComponent';
-import {AppDispatch, RootState} from "@/redux/store";
+import {AppDispatch, RootState, useAppSelector} from "@/redux/store";
 import {setAnswers, updateScore} from "@/redux/features/quiz-slice";
+import {useRouter} from "next/navigation";
 
 const QuizComponent: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const navigate = useNavigate();
-    const questions = useSelector((state: RootState) => state.quiz.questions);
-    const score = useSelector((state: RootState) => state.quiz.score);
-    const answers = useSelector((state: RootState) => state.quiz.answers);
+    const questions = useAppSelector((state: RootState) => state.quiz.questions);
+    const score = useAppSelector((state: RootState) => state.quiz.score);
+    const answers = useAppSelector((state: RootState) => state.quiz.answers);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedChoice, setSelectedChoice] = useState('');
     const [timeLeft, setTimeLeft] = useState(30);
@@ -33,7 +33,8 @@ const QuizComponent: React.FC = () => {
     const [selectedBugs, setSelectedBugs] = useState<number[]>([]);
     const [isAnswering, setIsAnswering] = useState(false);
     const [correctQuestionsId, setCorrectQuestionsId] = useState<number[]>([]);
-
+    const accessToken = useSelector((state:RootState)=>state.login.accessToken)
+    const router = useRouter();
     const handleChoiceSelect = (choice: string) => {
         if (!isAnswering) {
             setIsAnswering(true);
@@ -47,7 +48,7 @@ const QuizComponent: React.FC = () => {
 
         const isCorrect = selectedChoice === questions[currentQuestionIndex].correctAnswer;
         dispatch(updateScore(isCorrect ? 5 : 0));
-        dispatch(setAnswers([...answers, selectedChoice]));
+        dispatch(setAnswers([...answers, { answer: selectedChoice, questionId: questions[currentQuestionIndex].questionsId }]));
         setAnimationState(isCorrect ? 'correct' : 'incorrect');
 
         if (isCorrect) {
@@ -113,12 +114,13 @@ const QuizComponent: React.FC = () => {
             }
             const response = await axios.post(`/my-page/score-answer`,data, {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem("accessToken")}` // 인증 토큰을 포함하여 요청
+                    Authorization: `Bearer ${accessToken}` // 인증 토큰을 포함하여 요청
                 }
             });
             console.log(response);
             console.log(score);
-            navigate('/Result');
+            router.push('/Result');
+            // window.location.href = '/Result';
         } catch (error) {
             console.error('서버 요청 실패:', error);
         }

@@ -1,20 +1,19 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import {HeaderWrapper, Li, Nav, NavLink, Ul} from "@/app/common/HeaderStyledComponent";
+import {HeaderWrapper, Li, Nav, NavLink, Ul} from "@/app/Header/HeaderStyledComponent";
 import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "@/redux/store";
+import {AppDispatch, RootState, useAppSelector} from "@/redux/store";
 
 
 const Header: React.FC = () => {
     const [isscrolled, setIsscrolled] = useState<string>("false");
     const accessToken = useSelector((state:RootState)=>state.login.accessToken)
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useDispatch();
     const handleLogout = () => {
         dispatch({ type: "LOGOUT" });
         window.location.href = '/Login';
     };
-
     useEffect(() => {
         const handleScroll = () => {
             if(window.scrollY > 0){
@@ -66,13 +65,13 @@ const Header: React.FC = () => {
                 {accessToken ? (
                     <>
                         <Link href="/My-page">
-                            <NavLink >Mypage</NavLink>
+                            <NavLink isscrolled={isscrolled}>Mypage</NavLink>
                         </Link>
                     </>
                 ) : (
                     <>
                         <Link href="/SignUp">
-                            <NavLink >SignUp</NavLink>
+                            <NavLink isscrolled={isscrolled}>SignUp</NavLink>
                         </Link>
                     </>
                 )}

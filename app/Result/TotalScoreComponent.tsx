@@ -1,19 +1,19 @@
-// TotalScoreComponent.tsx
+'use client'
 import React from "react";
 import {ResultStyledBox, ResultStyledButtons, ResultStyledContainer} from "./ResultStyledComponent";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {RootState} from "@/redux/store";
+import {RootState, useAppSelector} from "@/redux/store";
+import {useRouter} from "next/navigation";
 
 const TotalScoreComponent: React.FC = () => {
-    const navigate = useNavigate();
-    const score = useSelector((state: RootState) => state.quiz.score);
+    const router = useRouter()
+    const score = useAppSelector((state: RootState) => state.quiz.score);
     const handleGoHome = () => {
-        navigate("/");
+        router.push("/");
     };
 
     const handleRestart = () => {
-        navigate("/SelectLanguage");
+        router.push("/SelectLanguage");
     };
 
     return (

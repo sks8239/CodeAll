@@ -6,7 +6,8 @@ import {interviewReducer, InterviewState} from "@/redux/features/interview-slice
 import {univReducer, UnivState} from "@/redux/features/univRank-slice";
 import {individualReducer, IndividualState} from "@/redux/features/individualRank-slice";
 import {signUpReducer, SignUpState} from "@/redux/features/signUp-slice";
-
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 export interface RootState {
     quiz: QuizState;
     interview: InterviewState;
@@ -27,5 +28,13 @@ const rootReducer = combineReducers({
     univ: univReducer,
     individual: individualReducer
 });
-
-export default rootReducer;
+// const persistConfig = {
+//     key: "root",
+//     storage,
+//     whitelist:['login']
+// };
+//
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
+//
+// export default persistedReducer;
+export default rootReducer

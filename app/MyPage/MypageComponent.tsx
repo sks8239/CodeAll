@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Common/Header";
+import Header from "../Header/Header";
 import axios from "axios";
 import MypageStyledComponent from "./MypageStyledComponent";
 

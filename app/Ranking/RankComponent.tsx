@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import SchoolRankView from "./SchoolRankViewComponent";
 import IndividualRankView from "./IndividualRankViewComponent";
-import Header from "../Common/Header";
+import Header from "../Header/Header";
 import { RankButton, RankButtonContainer } from "./RankStyledComponent";
 import axios from "axios";
 import {useDispatch} from "react-redux";

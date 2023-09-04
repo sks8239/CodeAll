@@ -1,6 +1,9 @@
 'use client'
 import React, { useEffect, useRef } from 'react';
-import Section1 from "@/app/Home/HomeSection/Section1";
+import dynamic from 'next/dynamic';
+
+const Section1 = dynamic(() => import('@/app/Home/HomeSection/Section1'),{ loading: () => <p>Loading...</p>, preload : true });
+// import Section1 from "@/app/Home/HomeSection/Section1";
 import Section3 from "@/app/Home/HomeSection/Section3";
 import Section4 from "@/app/Home/HomeSection/Section4";
 import Section2 from "@/app/Home/HomeSection/Section2";
