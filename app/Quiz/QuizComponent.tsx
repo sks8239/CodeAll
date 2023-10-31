@@ -137,8 +137,8 @@ const QuizComponent: React.FC = () => {
                         zIndex: 1,
                         color: '#965A00',
                         position: 'absolute',
-                        left: '-15%',
-                        top: '80%',
+                        left: '-30%',
+                        top: '210%',
                         fontSize: '80px',
                         transform: 'rotate(-75deg)',
                     }}

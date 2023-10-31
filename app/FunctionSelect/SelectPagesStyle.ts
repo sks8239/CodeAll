@@ -1,7 +1,7 @@
 'use client'
 import styled from 'styled-components';
 const BoxWrapper = styled.div`
-  margin-top: 10vh;
+  margin-top: 22vh;
   display: flex;
   justify-content: center;
   align-items: center;

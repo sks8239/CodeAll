@@ -1,12 +1,15 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import axios from "axios";
 import MypageStyledComponent from "./MypageStyledComponent";
+import {useSelector} from "react-redux";
+import {RootState} from "@/redux/store";
 
 const MypageComponent: React.FC = () => {
     const [userData, setUserData] = useState<any>(null);
     const [newNickname, setNewNickname] = useState<string>("");
-
+    const accessToken = useSelector((state:RootState)=>state.login.accessToken)
     useEffect(() => {
         myData();
     }, []);
@@ -15,7 +18,7 @@ const MypageComponent: React.FC = () => {
         try {
             const response = await axios.get(`/my-page/my-info`, {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             });
             console.log(response);
@@ -94,6 +97,9 @@ const MypageComponent: React.FC = () => {
                                 name="Pwd"
                                 value={userData.memberPwd}
                             />
+                            <button className="enable_button2" onClick={handleNicknameChange}>
+                                비밀번호 변경
+                            </button>
                         </div>
                         <div className="item2">
                             Name <br/>

@@ -8,7 +8,7 @@ interface WebButtonProps {
 
 const WebButton: React.FC<WebButtonProps> = ({ children }) => {
     return (
-        <Link href="/FunctionSelectPage">
+        <Link href="/FunctionSelect">
             <WebButtonStyle>
                 {children}
             </WebButtonStyle>

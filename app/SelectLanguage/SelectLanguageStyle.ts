@@ -10,7 +10,7 @@ const SelectLanguageContainer = styled.div`
   border-radius: 10px; /* 테두리를 둥글게 */
   padding: 20px;
   background-color: #f1f5f8;
-  margin: 20px auto; /* 중앙에 위치하도록 수정 */
+  margin: 100px auto; /* 중앙에 위치하도록 수정 */
   width: 700px;
   height: 200px;
   

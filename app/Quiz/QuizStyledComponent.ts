@@ -11,12 +11,14 @@ const QuizWrapper = styled.div`
   align-items: center;
   background-color: #3389ff;
   height: 100vh;
-
-
+  width:100vw;
+  position: absolute;
+  top:0;
+  left:0;
 `;
 
 const QuestionContainer = styled.div`
-  position: relative;
+  position: absolute;
   background-color: white;
   border-radius: 40px;
   box-shadow: 0 8px 16px rgba(1, 1, 1, 0.8);
@@ -29,7 +31,8 @@ const QuestionContainer = styled.div`
   padding-right: 100px;
   padding-top: 50px;
   padding-bottom: 50px;
- 
+  width: 70vw;
+  height: 50vh;
   h2 {
     font-size: 32px;
     color: #2979ff;

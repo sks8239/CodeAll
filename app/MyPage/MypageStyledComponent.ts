@@ -4,7 +4,7 @@ const MyPageStyledComponent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 8vw;
   .input::placeholder {
     color: #000;
   }
@@ -51,7 +51,17 @@ const MyPageStyledComponent = styled.div`
   }
 
   .enable_button {
-    width: 100px;
+    width: 117px;
+    height: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .enable_button2 {
+    width: 117px;
     height: 40px;
     background-color: #007bff;
     color: #fff;

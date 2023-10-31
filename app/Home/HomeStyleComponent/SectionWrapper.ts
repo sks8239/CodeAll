@@ -10,6 +10,7 @@ const Section1Wrapper = styled.div`
   justify-content: center;
   height: 90vh;
   position: relative;
+  width: 100vw;
   background: linear-gradient(to bottom, #3389FF, #FFFFFF);
   color : white;
 
@@ -82,6 +83,11 @@ const Section2Wrapper = styled.div`
     color:black;
     font-weight: bold;
   }
+  .monitorImage{
+    position : absolute;
+    top: 40%;
+    left:50%;
+  }
 `;
 
 const Section3Wrapper = styled.div`
@@ -90,12 +96,12 @@ const Section3Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 150vh;
+  height: 100%;
   width: 100%;
 
   .section3head{
     position: absolute;
-    top:10%;
+    top:20vh;
     left:20%;
     font-size: 40px;
     color:black;
@@ -104,17 +110,17 @@ const Section3Wrapper = styled.div`
   }
   .cycle2head{
     position: absolute;
-    top:10%;
-    left:35%;
-    font-size: 50px;
+    top:30%;
+    left:10%;
+    font-size: 40px;
     color:black;
     font-weight: bold;
   }
   .cycle3head{
     position: absolute;
-    top:50%;
+    top:30%;
     left:10%;
-    font-size: 50px;
+    font-size: 40px;
     color:black;
     font-weight: bold;
   }
@@ -130,30 +136,44 @@ const Section3Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 20px; /* 이미지 사이의 간격 조정 */
+
   }
 
-  /* vsImage 스타일 추가 */
+  /* vsImage 스타일 */
   .vsImage {
-    width: 20vw; /* 원하는 크기로 조정하세요 */
+    width: 20vw; 
     left:50%;
     height: auto;
   }
   .school1 {
-    width: 30vw; /* 원하는 크기로 조정하세요 */
+    width: 30vw;
     height: auto;
   }
   .school2 {
-    width: 30vw; /* 원하는 크기로 조정하세요 */
-    height: auto;
+    position: absolute;
+    top:20%; 
+    left:50%;
+    width: 45vw; 
+    height: 45vh;
+  }
+  .rankQuiz {
+    position: absolute;
+    top:20%;
+    left:50%;
+    width: 45vw;
+    height: 50vh;
   }
   .quizman{
-    width: 30vw; /* 원하는 크기로 조정하세요 */
+    width: 30vw;
     height: auto;
     margin-bottom: 50px;
   }
   .rankget{
-    width: 30vw; /* 원하는 크기로 조정하세요 */
-    height: auto;
+    width: 45vw; 
+    height: 50vh;
+    position:absolute;
+    left:45%;
+    top:20%;
     margin-bottom: 50px;
   }
   .section3head{
@@ -173,6 +193,10 @@ const Section4Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  h1{
+    position: absolute;
+    left: 20%;
+  }
   .group{
     position: absolute;
     bottom:0;
@@ -205,6 +229,11 @@ const Section4Wrapper = styled.div`
     font-size: 50px;
     color: black;
     font-weight: bold;
+  }
+  .interviewImage{
+    position: relative;
+    top: 0%;
+    left:20%;
   }
 `;
 

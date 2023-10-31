@@ -55,8 +55,6 @@ const SchoolRankView: React.FC = () => {
                         <th className="rank-table-header">랭크 변화</th>
                         <th className="rank-table-header">점수</th>
                         <th className="rank-table-header">랭크</th>
-                        <th className="rank-table-header">평균 점수</th>
-                        <th className="rank-table-header">사용자 수</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -89,8 +87,6 @@ const SchoolRankView: React.FC = () => {
                                 </td>
                                 <td>{score}</td>
                                 <td>{rankName}</td>
-                                <td>{averageScore}</td>
-                                <td>{userNumber}</td>
                             </tr>
                         )
                     )}

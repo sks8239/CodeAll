@@ -1,6 +1,7 @@
+'use client'
 import React from 'react'
 import StyledButton from './StyledButton';
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 
 const StudyButton: React.FC = () => {
     const router = useRouter();

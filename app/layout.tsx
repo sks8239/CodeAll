@@ -3,10 +3,11 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import {ReduxProvider} from "@/redux/provider";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import dynamic from "next/dynamic";
 import {RootState, useAppSelector} from "@/redux/store";
 import StyledComponentsRegistry from "@/app/registry";
+import {usePathname} from "next/navigation";
 const inter = Inter({ subsets: ['latin'] })
 
 const Header = dynamic(()=>import('@/app/Header/Header'), { loading: () => <p>Loading...</p>, preload: true , SSR : false})
@@ -19,6 +20,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+        const pathName = usePathname();
+        console.log(pathName);
   return (
       <ReduxProvider>
       <html>
@@ -28,7 +31,7 @@ export default function RootLayout({
       </head>
 
       <body>
-      <nav><Header/></nav>
+      {pathName==='/Quiz'? '':<Header/>}
       {children}
       </body>
       </StyledComponentsRegistry>

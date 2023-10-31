@@ -26,11 +26,13 @@ const LazyLoadedSection: React.FC<LazyLoadedSectionProps> = ({ children }) => {
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
+      console.log("뷰포트침범")
     }
 
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
+        console.log("뷰포트해제")
       }
     };
   }, []);

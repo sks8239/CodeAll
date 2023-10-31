@@ -1,4 +1,4 @@
-'use client'
+
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {HeaderWrapper, Li, Nav, NavLink, Ul} from "@/app/Header/HeaderStyledComponent";
@@ -14,6 +14,7 @@ const Header: React.FC = () => {
         dispatch({ type: "LOGOUT" });
         window.location.href = '/Login';
     };
+
     useEffect(() => {
         const handleScroll = () => {
             if(window.scrollY > 0){
@@ -24,7 +25,6 @@ const Header: React.FC = () => {
             }
 
         };
-
         window.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -32,58 +32,60 @@ const Header: React.FC = () => {
         };
     }, []);
 
+
+
     return (
-        <HeaderWrapper isscrolled={isscrolled}>
+        <HeaderWrapper $isscrolled={isscrolled}>
             <Nav>
                 <Ul>
                     <Li>
                         <Link href="/">
-                            <NavLink isscrolled={isscrolled}>CodeAll</NavLink>
+                            <NavLink $isscrolled={isscrolled}>CodeAll</NavLink>
                         </Link>
                     </Li>
                     <Li>
                         <Link href="/Study">
-                            <NavLink isscrolled={isscrolled}>공부하기</NavLink>
+                            <NavLink $isscrolled={isscrolled}>공부하기</NavLink>
                         </Link>
                     </Li>
                     <Li>
                         <Link href="/SelectLanguage">
-                            <NavLink isscrolled={isscrolled}>퀴즈풀기</NavLink>
+                            <NavLink $isscrolled={isscrolled}>퀴즈풀기</NavLink>
                         </Link>
                     </Li>
                     <Li>
                         <Link href="/Interview">
-                            <NavLink isscrolled={isscrolled}>면접준비</NavLink>
+                            <NavLink $isscrolled={isscrolled}>면접준비</NavLink>
                         </Link>
                     </Li>
                     <Li>
                         <Link href="/Ranking">
-                            <NavLink isscrolled={isscrolled}>랭킹보기</NavLink>
+                            <NavLink $isscrolled={isscrolled}>랭킹보기</NavLink>
                         </Link>
                     </Li>
                 </Ul>
                 {accessToken ? (
                     <>
-                        <Link href="/My-page">
-                            <NavLink isscrolled={isscrolled}>Mypage</NavLink>
+                        <Link href="/MyPage">
+                            <NavLink $isscrolled={isscrolled}>Mypage</NavLink>
                         </Link>
                     </>
                 ) : (
                     <>
                         <Link href="/SignUp">
-                            <NavLink isscrolled={isscrolled}>SignUp</NavLink>
+                            <NavLink $isscrolled={isscrolled}>SignUp</NavLink>
                         </Link>
                     </>
                 )}
                 {accessToken ? (
                     <>
-                        <NavLink onClick={handleLogout} isscrolled={isscrolled}>
+                        <NavLink onClick={handleLogout} $isscrolled={isscrolled}>
                             Logout
                         </NavLink>
                     </>
                 ) : (
                     <Link href="/Login">
-                        <NavLink isscrolled={isscrolled}>Login</NavLink>
+                        <NavLink $isscrolled={isscrolled}>Login</NavLink>
                     </Link>
                 )}
             </Nav>

@@ -1,3 +1,4 @@
+'use client'
 import styled, { css } from "styled-components";
 
 interface HeaderWrapperProps {
@@ -10,6 +11,7 @@ const HeaderWrapper = styled.header<HeaderWrapperProps>`
   top: 0;
   background-color: ${(props) => (props.$isscrolled === "true" ? "#FFFFFF" : "#3389FF")};
   z-index: 100;
+  
 `;
 
 const Nav = styled.nav`
@@ -21,6 +23,7 @@ const Nav = styled.nav`
 `;
 
 const Ul = styled.ul`
+  
   display: flex;
   list-style: none;
   margin: 0;
@@ -50,9 +53,10 @@ const Li = styled.li`
 `;
 interface NavLinkProps {
     $isscrolled: string;
-}
+};
+
 const NavLink = styled.div<NavLinkProps>`
-  text-decoration: none;
+  text-decoration-color: white;
   color: #ffffff;
   font-weight: bold;
   transition: color 0.3s ease;

@@ -291,7 +291,7 @@ const ContentComponent: React.FC = () => {
                                         {isContentShown ? <ChatText /> : <ChatDots />}{commentCnt}
                                     </button>
                                     <button className="like-cnt" onClick={() => handleInterviewLikeClick(interviewId)}>
-                                        <Heart />{likeCnt}
+                                        {interviewLike[interviewId] ? <HeartFill /> : <Heart />}{likeCnt}
                                     </button>
                                 </div>
                                 {isContentShown && (

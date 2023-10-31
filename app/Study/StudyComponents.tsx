@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { InterviewWrapper } from "../Interview/InterviewStyledComponent";
-import {ChatText, ChatDots, PinAngleFill, Heart} from "react-bootstrap-icons";
+import {ChatText, ChatDots, PinAngleFill, Heart, HeartFill} from "react-bootstrap-icons";
 import {RootState} from "@/redux/store";
 
 const StudyComponents: React.FC = () => {
@@ -15,6 +15,7 @@ const StudyComponents: React.FC = () => {
     const example = languageData[selectedLanguage]?.example || [];
     const explanations = languageData[selectedLanguage]?.explanations || [];
     const studyIds = languageData[selectedLanguage]?.studyIds || [];
+    const [likedStudies, setLikedStudies] = useState<number[]>([]);
 
     const [showContent, setShowContent] = useState<boolean[]>([]);
     console.log(languageData)
@@ -27,6 +28,13 @@ const StudyComponents: React.FC = () => {
     };
 
     const handleLikeClick=(studyId: any) =>{
+        if (likedStudies.includes(studyId)) {
+            // Unlike: Remove studyId from likedStudies array
+            setLikedStudies((prevLikedStudies) => prevLikedStudies.filter(id => id !== studyId));
+        } else {
+            // Like: Add studyId to likedStudies array
+            setLikedStudies((prevLikedStudies) => [...prevLikedStudies, studyId]);
+        }
         console.log(studyId + " 번 좋아요 눌림")
     }
 
@@ -56,7 +64,7 @@ const StudyComponents: React.FC = () => {
                         <button className="like-cnt"
                                 onClick={()=>handleLikeClick(studyIds[index])}
                         >
-                            <Heart />
+                            {likedStudies.includes(studyIds[index]) ? <HeartFill /> : <Heart />}
                         </button>
                     </div>
 

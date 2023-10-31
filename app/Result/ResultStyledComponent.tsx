@@ -6,6 +6,7 @@ const ResultStyledContainer = styled.div`
   align-items: center;
   margin-top: 30px;
   color:white;
+  margin-top: 100px;
 `;
 
 const ResultStyledBox = styled.div`
@@ -52,7 +53,8 @@ const ResultStyledButtons = styled.div`
 `;
 
 const ResultStyledButtons2 = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-left: 3vw;
   button {
     margin-right: 10px;
     border-radius: 4px;

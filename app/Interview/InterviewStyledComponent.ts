@@ -73,6 +73,15 @@ const InterviewWrapper = styled.div`
     align-items: flex-start; /* 추가 */
   }
   
+  .comment-like-cnt {
+    position: relative;
+    margin-bottom: 1vh;
+    font-size: 2vh;
+    border: none;
+    background-color: transparent;
+    color: white;
+  }
+  
   .question-Title{
     position: relative;
     transform: translateY(50%);
